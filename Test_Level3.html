@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+
+<head>
+                <!-- Video.js build -->
+                <link href="//vjs.zencdn.net/7.4.1/video-js.min.css" rel="stylesheet">
+                <script src="//vjs.zencdn.net/7.4.1/video.min.js"></script>
+
+                <!-- Streamroot source handler plugin -->
+                <script src="//cdn.streamroot.io/videojs-hlsjs-plugin/1/stable/videojs-hlsjs-plugin.js"></script>
+
+                <!-- Streamroot DNA plugin -->
+                <script src="//cdn.streamroot.io/videojs-hls-dna-plugin/1/stable/videojs-hls-dna-plugin.js?srKey=1c04d9d9-96d7-4bce-be8b-ab38b319047c"></script>
+                    
+                <script src="//tools.streamroot.io/usage-graphs/stable/graphs.js"></script>
+                
+                
+</head>
+
+<body>
+               <video id="demoplayer" id=demoplayer width=512 height=288 class="video-js" controls></video>
+                             
+              <script>
+              
+                    var options = {
+                        html5: {
+                        hlsjsConfig: {},
+                        },
+                        dnaConfig: {},
+                    };
+                    var player = videojs("demoplayer", options);
+                    player.src("http://vod-l3.delivery.streamroot.io/vodOrigin/tos1500.mp4/playlist.m3u8");
+                   
+                   
+            </script>
+            
+            <script>     
+                   var contentID="123";
+                    function contentIdFn("http://vod-l3.delivery.streamroot.io/vodOrigin/tos1500.mp4/playlist.m3u8") {
+                    return contentID;
+                     }
+
+                    var dnaConfig = { 
+                    "contentIdGenerator" : contentIdFn
+                    };
+                 
+            </script>          
+                 
+
+    
+    <br />
+            <input id="btnDisable" type="button" style="color:red;" value="Click to Disable Upload">
+
+            <script>
+                // Creating button to P2P Enable / Disable
+                var myBtn = document.getElementById('btnDisable');
+
+                //add event listener
+                myBtn.addEventListener('click', function (event) {
+                    if (Streamroot.instances[0].dnaUploadEnabled) {
+                        Streamroot.instances[0].dnaUploadEnabled = false;
+                        myBtn.value = "Click to Enable Upload";
+                    }
+                    else {
+                        Streamroot.instances[0].dnaUploadEnabled = true;
+                        myBtn.value = "Click to Disable Upload";
+                    }
+                });
+            </script>
+            
+            <div id="streamroot-graphs"></div>
+                                       
+</body>
+​
+</html>
